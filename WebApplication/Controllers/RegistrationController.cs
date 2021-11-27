@@ -18,15 +18,13 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult  RegistrateUser(User user)
+        public IActionResult  RegistrateUser(FormInput formInput)
         {
-            Console.WriteLine(user.ToString());
             if (!ModelState.IsValid)
             {
-                if (!string.Equals(user.Password, user.PasswordConfirm))
+                if (!string.Equals(formInput.Password, formInput.PasswordConfirm))
                 {
                     ModelState.AddModelError("password","Password and Confirm password not the same");
-                    Console.WriteLine("fesfergergerger");
                 }
                 return Redirect("~/registration");
             }

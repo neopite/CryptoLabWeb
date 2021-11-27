@@ -9,7 +9,7 @@ namespace WebApplication.Controllers
         [Route("user")]
         public string GetUserByID()
         {
-            return "sraka" + new Timer().Interval;
+            return "User";
         }
     }
 }

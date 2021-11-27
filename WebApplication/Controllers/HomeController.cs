@@ -15,11 +15,5 @@ namespace WebApplication.Controllers
         {
             return "Login Successful!";
         }
-
-        // public IActionResult FailedRegistration()
-        // {
-        //
-        // }
-
     }
 }
