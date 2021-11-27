@@ -51,3 +51,15 @@ C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\runt
 C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\obj\Debug\net5.0\WebApplication.csproj.CopyComplete
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Azure.Data.AppConfiguration.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Azure.Identity.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Microsoft.Azure.AppConfiguration.AspNetCore.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Sergey\Desktop\crypto\CryptoLabWeb\WebApplication\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
