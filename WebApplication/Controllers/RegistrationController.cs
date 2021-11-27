@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,14 +18,19 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage  RegistrateUser(User user)
+        public IActionResult  RegistrateUser(User user)
         {
+            Console.WriteLine(user.ToString());
             if (!ModelState.IsValid)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                if (!string.Equals(user.Password, user.PasswordConfirm))
+                {
+                    ModelState.AddModelError("password","Password and Confirm password not the same");
+                    Console.WriteLine("fesfergergerger");
+                }
+                return Redirect("~/registration");
             }
-            Console.WriteLine(user.ToString());
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return Redirect("~/LoginCompleted");
         }
     }
 }

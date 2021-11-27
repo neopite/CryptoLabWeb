@@ -9,5 +9,17 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+
+        [Route("LoginCompleted")]
+        public string CompleteRegistration()
+        {
+            return "Login Successful!";
+        }
+
+        // public IActionResult FailedRegistration()
+        // {
+        //
+        // }
+
     }
 }
