@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "0FG9b89O1QlFAzIcIGDCPxYqfMP8Hjm+yZfZaAqrWf8H+LoIs2UJ17tUow6rYCl6fhbMSdaBn23AL+FTNa7YKw==",
+  "dgSpecHash": "HlNSeKwE7sc1eHZtlr/57JyI6bViV0AA83HIqwUaq3aJgNUZuGJEQoA0OVYypx840gZSa88CFiGUePpdSa/d2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sergey\\Desktop\\crypto\\CryptoLabWeb\\WebApplication\\WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sergey\\.nuget\\packages\\azure.core\\1.20.0\\azure.core.1.20.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\azure.data.appconfiguration\\1.0.0\\azure.data.appconfiguration.1.0.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\azure.identity\\1.5.0\\azure.identity.1.5.0.nupkg.sha512",
-    "C:\\Users\\Sergey\\.nuget\\packages\\azure.security.keyvault.secrets\\4.0.1\\azure.security.keyvault.secrets.4.0.1.nupkg.sha512",
+    "C:\\Users\\Sergey\\.nuget\\packages\\azure.security.keyvault.secrets\\4.3.0-beta.2\\azure.security.keyvault.secrets.4.3.0-beta.2.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.azure.appconfiguration.aspnetcore\\4.5.1\\microsoft.azure.appconfiguration.aspnetcore.4.5.1.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration\\2.1.1\\microsoft.extensions.configuration.2.1.1.nupkg.sha512",

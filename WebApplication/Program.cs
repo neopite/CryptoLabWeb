@@ -8,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Core;
+
 namespace WebApplication
 {
     public class Program

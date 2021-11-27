@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[1.5.0, )"
             },
+            "Azure.Security.KeyVault.Secrets": {
+              "target": "Package",
+              "version": "[4.3.0-beta.2, )"
+            },
             "Microsoft.Azure.AppConfiguration.AspNetCore": {
               "target": "Package",
               "version": "[4.5.1, )"

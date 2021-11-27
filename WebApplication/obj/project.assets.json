@@ -52,13 +52,13 @@
           "lib/netstandard2.0/Azure.Identity.dll": {}
         }
       },
-      "Azure.Security.KeyVault.Secrets/4.0.1": {
+      "Azure.Security.KeyVault.Secrets/4.3.0-beta.2": {
         "type": "package",
         "dependencies": {
-          "Azure.Core": "1.0.1",
-          "System.Memory": "4.5.3",
+          "Azure.Core": "1.20.0",
+          "System.Memory": "4.5.4",
           "System.Text.Json": "4.6.0",
-          "System.Threading.Tasks.Extensions": "4.5.2"
+          "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "compile": {
           "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll": {}
@@ -452,16 +452,16 @@
         "pkgicon.png"
       ]
     },
-    "Azure.Security.KeyVault.Secrets/4.0.1": {
-      "sha512": "/6tKn6aMYGsaiFgdGmWX14V8yupFGqMxIGK1nD3D83cZY032VunmaP8wkDDNy3YUWM9UAqpejwQsgFdR/ftjbQ==",
+    "Azure.Security.KeyVault.Secrets/4.3.0-beta.2": {
+      "sha512": "ZjPD8/9GMvmCEooW9eOIyjaGK9gjiU3xZD18zGOQLtusjj7DTqoQqqj5R/uL2HVjhGYG1r1f/E038NGlaX8Ytg==",
       "type": "package",
-      "path": "azure.security.keyvault.secrets/4.0.1",
+      "path": "azure.security.keyvault.secrets/4.3.0-beta.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "CHANGELOG.md",
         "README.md",
-        "azure.security.keyvault.secrets.4.0.1.nupkg.sha512",
+        "azure.security.keyvault.secrets.4.3.0-beta.2.nupkg.sha512",
         "azure.security.keyvault.secrets.nuspec",
         "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll",
         "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.xml",
@@ -1201,6 +1201,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Azure.Identity >= 1.5.0",
+      "Azure.Security.KeyVault.Secrets >= 4.3.0-beta.2",
       "Microsoft.Azure.AppConfiguration.AspNetCore >= 4.5.1",
       "System.Data.SqlClient >= 4.8.3"
     ]
@@ -1247,6 +1248,10 @@
           "Azure.Identity": {
             "target": "Package",
             "version": "[1.5.0, )"
+          },
+          "Azure.Security.KeyVault.Secrets": {
+            "target": "Package",
+            "version": "[4.3.0-beta.2, )"
           },
           "Microsoft.Azure.AppConfiguration.AspNetCore": {
             "target": "Package",
