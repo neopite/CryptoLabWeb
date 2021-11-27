@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Model;
+using WebApplication.Model.Hashing;
 
 namespace WebApplication.Controllers
 {
@@ -18,17 +19,22 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult  RegistrateUser(FormInput formInput)
+        public IActionResult RegistrateUser(FormInput formInput)
         {
             if (!ModelState.IsValid)
             {
                 if (!string.Equals(formInput.Password, formInput.PasswordConfirm))
                 {
-                    ModelState.AddModelError("password","Password and Confirm password not the same");
+                    ModelState.AddModelError("password", "Password and Confirm password not the same");
                 }
+
                 return Redirect("~/registration");
             }
-            return Redirect("~/LoginCompleted");
+            var hashAlgorithm = new SHA256PasswordHashProvider();
+            var user = new User(formInput.Username, hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10).Hash,
+                formInput.Email, formInput.Email);
+            //TODO : create new user and add salt to user table or another
+            return Redirect("~/login");
         }
     }
 }

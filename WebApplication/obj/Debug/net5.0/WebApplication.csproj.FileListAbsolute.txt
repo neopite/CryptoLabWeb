@@ -96,3 +96,4 @@ C:\Users\Stami\RiderProjects\WebApplication\WebApplication\obj\Debug\net5.0\WebA
 C:\Users\Stami\RiderProjects\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Registration\GetRegistrationPage.cshtml.g.cs
 C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\System.ComponentModel.Annotations.dll
 C:\Users\Stami\RiderProjects\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Registration\FailedRegistration.cshtml.g.cs
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Login\GetLoginPage.cshtml.g.cs

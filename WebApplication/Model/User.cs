@@ -13,6 +13,14 @@ namespace WebApplication.Model
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
+        public User(string username, string password, string phoneNumber, string email)
+        {
+            Username = username;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
+
         public override string ToString()
         {
             return String.Format("Id : {0}  Username : {1} Password : {2} PhoneNumber : {3}  Email : {4} ", Id,
