@@ -60,10 +60,10 @@ namespace WebApplication
             
             app.UseEndpoints(endpoints =>
             {
-                var secret_key = _configuration["data"];
+                // var secret_key = _configuration["data"];
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"The secret value is: {secret_key}");
+                    await context.Response.WriteAsync($"The secret value is: {_configuration.GetChildren()}");
                 });
             });
         }
