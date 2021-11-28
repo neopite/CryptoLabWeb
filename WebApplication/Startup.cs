@@ -32,28 +32,6 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            // SecretClientOptions options = new SecretClientOptions()
-            // {
-            //     Retry =
-            //     {
-            //         Delay= TimeSpan.FromSeconds(2),
-            //         MaxDelay = TimeSpan.FromSeconds(16),
-            //         MaxRetries = 5,
-            //         Mode = RetryMode.Exponential
-            //     }
-            // };
-            // var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
-            //     new DefaultAzureCredential(),options);
-            //
-            // KeyVaultSecret secret_login = client.GetSecret("db-login");
-            // KeyVaultSecret secret_password = client.GetSecret("db-password");
-            //
-            // var secret_login = Configuration.GetValue<string>("db-login");
-
-            var secret_login = _configuration["db-login"];
-            var secret_password = _configuration["db-password"];
-            
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
@@ -69,13 +47,38 @@ namespace WebApplication
             }
 
             app.UseRouting();
-
+            
+            
+            SecretClientOptions options = new SecretClientOptions()
+            {
+                Retry =
+                {
+                    Delay= TimeSpan.FromSeconds(2),
+                    MaxDelay = TimeSpan.FromSeconds(16),
+                    MaxRetries = 5,
+                    Mode = RetryMode.Exponential
+                }
+            };
+            var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
+                new DefaultAzureCredential(),options);
+            
+            KeyVaultSecret secret_login = client.GetSecret("db-login");
+            KeyVaultSecret secret_password = client.GetSecret("db-password");
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync($"The secret value is: {secret_login.Value}");
+                });
             });
+
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllerRoute(
+            //         name: "default",
+            //         pattern: "{controller=Home}/{action=Index}/{id?}");
+            // });
         }
     }
 }
