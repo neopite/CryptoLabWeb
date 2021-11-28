@@ -55,7 +55,7 @@ namespace WebApplication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/",
-                    async context => { await context.Response.WriteAsync($"The secret value is: {client.GetKey("key-name")}"); });
+                    async context => { await context.Response.WriteAsync($"The secret value is: {client.GetKey("data")}"); });
             });
 
             // app.UseEndpoints(endpoints =>
