@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +25,26 @@ namespace WebApplication
         {
             services.AddMvc();
             
+            SecretClientOptions options = new SecretClientOptions()
+            {
+                Retry =
+                {
+                    Delay= TimeSpan.FromSeconds(2),
+                    MaxDelay = TimeSpan.FromSeconds(16),
+                    MaxRetries = 5,
+                    Mode = RetryMode.Exponential
+                }
+            };
+            var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
+                new DefaultAzureCredential(),options);
+            
+            KeyVaultSecret secret_login = client.GetSecret("db-login");
+            KeyVaultSecret secret_password = client.GetSecret("db-password");
+            
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
-                "User ID=banda;Password=12345Sergey;MultipleActiveResultSets=False;" +
+                $"User ID={secret_login};Password={secret_password};MultipleActiveResultSets=False;" +
                 "Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
         }
 
@@ -39,20 +56,6 @@ namespace WebApplication
             }
 
             app.UseRouting();
-            
-            // SecretClientOptions options = new SecretClientOptions()
-            // {
-            //     Retry =
-            //     {
-            //         Delay= TimeSpan.FromSeconds(2),
-            //         MaxDelay = TimeSpan.FromSeconds(16),
-            //         MaxRetries = 5,
-            //         Mode = RetryMode.Exponential
-            //     }
-            // };
-            // var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), new DefaultAzureCredential(),options);
-            //
-            // KeyVaultSecret secret = client.GetSecret("db-password");
 
             app.UseEndpoints(endpoints =>
             {
