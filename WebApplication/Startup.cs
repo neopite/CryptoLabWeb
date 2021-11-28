@@ -63,7 +63,7 @@ namespace WebApplication
                 // var secret_key = _configuration["data"];
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"The secret value is: {_configuration.GetChildren()}");
+                    await context.Response.WriteAsync($"The secret value is: {_configuration.GetChildren().Select(a => a.Key).ToList().Count}");
                 });
             });
         }
