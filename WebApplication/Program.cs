@@ -2,18 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using Azure.Identity;
+// using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Azure.Core;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
+// using Azure.Core;
+// using Microsoft.Azure.KeyVault;
+// using Microsoft.Azure.Services.AppAuthentication;
+// using Microsoft.Extensions.Configuration.AzureKeyVault;
 
 namespace WebApplication
 {
@@ -31,7 +32,12 @@ namespace WebApplication
                 {
                     var settings = config.Build();
                     var keyVaultEndpoint = "https://band-vault.vault.azure.net/";
-                    config.AddAzureKeyVault(keyVaultEndpoint);
+
+                    SecretClientOptions options = new SecretClientOptions();
+                    SecretClient client =
+                        new SecretClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential(), options);
+                    // config.AddAzureKeyVault(keyVaultEndpoint);
+                    config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }

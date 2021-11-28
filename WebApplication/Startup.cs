@@ -33,7 +33,7 @@ namespace WebApplication
         {
             services.AddMvc();
             var secret_login = _configuration["db-login"]; 
-            var secret_password = _configuration["db-password"]; 
+            var secret_password = _configuration["db-password"];
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
@@ -50,12 +50,21 @@ namespace WebApplication
 
             app.UseRouting();
             
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllerRoute(
+            //         name: "default",
+            //         pattern: "{controller=Home}/{action=Index}/{id?}");
+            //     
+            // });
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                
+                var secret_key = _configuration["data"];
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync($"The secret value is: {secret_key}");
+                });
             });
         }
     }
