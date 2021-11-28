@@ -18,25 +18,25 @@ namespace WebApplication.Model.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            SecretClientOptions options = new SecretClientOptions()
-            {
-                Retry =
-                {
-                    Delay= TimeSpan.FromSeconds(2),
-                    MaxDelay = TimeSpan.FromSeconds(16),
-                    MaxRetries = 5,
-                    Mode = RetryMode.Exponential
-                }
-            };
-            var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
-                new DefaultAzureCredential(),options);
-            
-            KeyVaultSecret secret_login = client.GetSecret("db-login");
-            KeyVaultSecret secret_password = client.GetSecret("db-password");
+            // SecretClientOptions options = new SecretClientOptions()
+            // {
+            //     Retry =
+            //     {
+            //         Delay= TimeSpan.FromSeconds(2),
+            //         MaxDelay = TimeSpan.FromSeconds(16),
+            //         MaxRetries = 5,
+            //         Mode = RetryMode.Exponential
+            //     }
+            // };
+            // var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
+            //     new DefaultAzureCredential(),options);
+            //
+            // KeyVaultSecret secret_login = client.GetSecret("db-login");
+            // KeyVaultSecret secret_password = client.GetSecret("db-password");
             
             optionsBuilder.UseSqlServer(@"Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
-                $"User ID={secret_login};Password={secret_password};MultipleActiveResultSets=False;" +
+                $"User ID=banda;Password=12345Sergey;MultipleActiveResultSets=False;" +
                 "Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
     }
