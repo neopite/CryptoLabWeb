@@ -16,8 +16,8 @@ namespace WebApplication.Model
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
 
-        public string PhoneNumber { get; set; }
+        public string MobilePhone { get; set; }
 
-        public string Email { get; set; }
+        public string City { get; set; }
     }
 }

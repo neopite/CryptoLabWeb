@@ -39,8 +39,9 @@ namespace WebApplication.Controllers
             }
             var hashAlgorithm = new SHA256PasswordHashProvider();
             var user = new User(formInput.Username, hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10).Hash,
-                formInput.Email, formInput.Email);
-            //TODO : create new user and add salt to user table or another
+                formInput.MobilePhone, formInput.City);
+            context.Add(user);
+            context.SaveChanges();
             return Redirect("~/login");
         }
     }

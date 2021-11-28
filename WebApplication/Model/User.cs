@@ -6,25 +6,25 @@ namespace WebApplication.Model
 {
     public class User
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public string MobilePhone { get; set; }
+        public string City { get; set; }
 
-        public User(string username, string password, string phoneNumber, string email)
+        public User(string username, string password, string mobilePhone, string city)
         {
             Username = username;
             Password = password;
-            PhoneNumber = phoneNumber;
-            Email = email;
+            MobilePhone = mobilePhone;
+            City = city;
         }
 
         public override string ToString()
         {
             return String.Format("Id : {0}  Username : {1} Password : {2} PhoneNumber : {3}  Email : {4} ", Id,
-                Username, Password, PhoneNumber, Email);
+                Username, Password, MobilePhone, City);
         }
     }
 }
