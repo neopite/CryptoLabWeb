@@ -32,7 +32,7 @@ namespace WebApplication.Model.AES
                         encrypted = msEncrypt.ToArray();
                     }
                 }
-            }
+            }   
             return encrypted;
         }
         
