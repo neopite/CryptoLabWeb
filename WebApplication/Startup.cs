@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplication.Controllers.Validator;
 using WebApplication.Model;
+using WebApplication.Model.DB;
 
 namespace WebApplication
 {
@@ -21,6 +23,12 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
+            services.AddDbContext<UserDbContext>(
+                options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
+                "Initial Catalog=band_db;Persist Security Info=False;" +
+                "User ID=banda;Password=12345Sergey;MultipleActiveResultSets=False;" +
+                "Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

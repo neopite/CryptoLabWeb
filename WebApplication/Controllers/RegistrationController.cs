@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Model;
+using WebApplication.Model.DB;
 using WebApplication.Model.Hashing;
 
 namespace WebApplication.Controllers
@@ -12,6 +13,12 @@ namespace WebApplication.Controllers
     [Route("/registration")]
     public class RegistrationController : Controller
     {
+        private readonly UserDbContext context;
+        public RegistrationController(UserDbContext context)
+        {
+            this.context = context;
+        }
+        
         [HttpGet]
         public IActionResult GetRegistrationPage()
         {
