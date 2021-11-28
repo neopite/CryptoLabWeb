@@ -35,7 +35,7 @@ namespace WebApplication
             var secret_login = _configuration["db-login"]; 
             var secret_password = _configuration["db-password"]; 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
+                options => options.UseSqlServer("Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
                 $"User ID=banda;Password=12345Sergey;MultipleActiveResultSets=False;" +
                 "Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
