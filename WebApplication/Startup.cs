@@ -64,7 +64,7 @@ namespace WebApplication
             //
             // KeyVaultSecret secret_login = client.GetSecret("db-login");
             // KeyVaultSecret secret_password = client.GetSecret("db-password");
-            var value = _configuration["db-login"]; 
+            var value = _configuration["db-password"]; 
             
             app.UseEndpoints(endpoints =>
             {
