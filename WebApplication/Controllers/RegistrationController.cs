@@ -4,8 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication.Model;
 using WebApplication.Model.DB;
+using WebApplication.Model.Entety;
 using WebApplication.Model.Hashing;
 
 namespace WebApplication.Controllers
@@ -13,8 +15,8 @@ namespace WebApplication.Controllers
     [Route("/registration")]
     public class RegistrationController : Controller
     {
-        private readonly UserDbContext context;
-        public RegistrationController(UserDbContext context)
+        private readonly ApplicationDbContext context;
+        public RegistrationController(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -38,9 +40,13 @@ namespace WebApplication.Controllers
                 return Redirect("~/registration");
             }
             var hashAlgorithm = new SHA256PasswordHashProvider();
-            var user = new User(formInput.Username, hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10).Hash,
+            var saltedPassword = hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10);
+            var user = new User(formInput.Username, saltedPassword.Hash,
                 formInput.MobilePhone, formInput.City);
-            context.Add(user);
+            context.User.Add(user);
+            context.SaveChanges();
+            var userId = context.User.FirstOrDefault(x => string.Equals(user.Username, x.Username)).Id;
+            context.PasswordSalt.Add(new PasswordSalt(userId,saltedPassword.Salt));
             context.SaveChanges();
             return Redirect("~/login");
         }

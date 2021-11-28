@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApplication.Model.Entety;
 
 namespace WebApplication.Model.DB
 {
-    public class UserDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<User> User {get; set; }
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+        public DbSet<PasswordSalt> PasswordSalt { get; set; }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
         }

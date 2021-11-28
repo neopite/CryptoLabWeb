@@ -12,20 +12,20 @@ namespace WebApplication.Model.Repository
         public void AddUser(User user);
     }
 
-    public class UserRepository : IUserRepository
+    public class UserRepository
     {
-        private UserDbContext userDbContext;
-
-        public UserRepository(UserDbContext userDbContext)
-        {
-            this.userDbContext = userDbContext;
-        }
-
-        IEnumerable<User> IUserRepository.GetSukaUsers()
-        {
-            return userDbContext.User.Include(x => x.Username);
-        }
-
-        public void AddUser(User user) => userDbContext.User.Add(user);
+        // private UserDbContext userDbContext;
+        //
+        // public UserRepository(UserDbContext userDbContext)
+        // {
+        //     this.userDbContext = userDbContext;
+        // }
+        //
+        // IEnumerable<User> IUserRepository.GetSukaUsers()
+        // {
+        //     return userDbContext.User.Include(x => x.Username);
+        // }
+        //
+        // public void AddUser(User user) => userDbContext.User.Add(user);
     }    
 }
