@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "o5VFZfE7O18YjJRfHBjwLOUJaXVAaBX+L82rWoAu8l3WqzCCMgQ5jCeTqi6mWFsc8NeBimkLs7gUisyDZaqKaQ==",
+  "dgSpecHash": "HvdPp3rhILSBRYiPMdMAjFg6HaAAnSOHsFK3E8pJ4oeM6hvpmd6x7j48M8fWL6MnSzq3dYC31o+LmZ5uAsVhEg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Stami\\RiderProjects\\WebApplication\\WebApplication\\WebApplication.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Stami\\.nuget\\packages\\azure.data.appconfiguration\\1.0.0\\azure.data.appconfiguration.1.0.0.nupkg.sha512",
     "C:\\Users\\Stami\\.nuget\\packages\\azure.extensions.aspnetcore.configuration.secrets\\1.2.1\\azure.extensions.aspnetcore.configuration.secrets.1.2.1.nupkg.sha512",
     "C:\\Users\\Stami\\.nuget\\packages\\azure.identity\\1.5.0\\azure.identity.1.5.0.nupkg.sha512",
+    "C:\\Users\\Stami\\.nuget\\packages\\azure.security.keyvault.keys\\4.2.0\\azure.security.keyvault.keys.4.2.0.nupkg.sha512",
     "C:\\Users\\Stami\\.nuget\\packages\\azure.security.keyvault.secrets\\4.3.0-beta.2\\azure.security.keyvault.secrets.4.3.0-beta.2.nupkg.sha512",
     "C:\\Users\\Stami\\.nuget\\packages\\microsoft.azure.appconfiguration.aspnetcore\\4.5.1\\microsoft.azure.appconfiguration.aspnetcore.4.5.1.nupkg.sha512",
     "C:\\Users\\Stami\\.nuget\\packages\\microsoft.azure.keyvault\\3.0.5\\microsoft.azure.keyvault.3.0.5.nupkg.sha512",

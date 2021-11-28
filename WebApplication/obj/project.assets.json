@@ -66,6 +66,21 @@
           "lib/netstandard2.0/Azure.Identity.dll": {}
         }
       },
+      "Azure.Security.KeyVault.Keys/4.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.15.0",
+          "System.Memory": "4.5.4",
+          "System.Text.Json": "4.6.0",
+          "System.Threading.Tasks.Extensions": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Security.KeyVault.Keys.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Security.KeyVault.Keys.dll": {}
+        }
+      },
       "Azure.Security.KeyVault.Secrets/4.3.0-beta.2": {
         "type": "package",
         "dependencies": {
@@ -2534,6 +2549,22 @@
         "azure.identity.nuspec",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Security.KeyVault.Keys/4.2.0": {
+      "sha512": "I0e71ZjMQ3bJFBOnZNnKizshvZgd/GOx+m7waAeojbm/2P7j4mp5DXNMAN1nm0/FZaCGGR6fVF5I54El+RtGIg==",
+      "type": "package",
+      "path": "azure.security.keyvault.keys/4.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.security.keyvault.keys.4.2.0.nupkg.sha512",
+        "azure.security.keyvault.keys.nuspec",
+        "lib/netstandard2.0/Azure.Security.KeyVault.Keys.dll",
+        "lib/netstandard2.0/Azure.Security.KeyVault.Keys.xml",
         "pkgicon.png"
       ]
     },
@@ -8252,6 +8283,7 @@
     "net5.0": [
       "Azure.Extensions.AspNetCore.Configuration.Secrets >= 1.2.1",
       "Azure.Identity >= 1.5.0",
+      "Azure.Security.KeyVault.Keys >= 4.2.0",
       "Azure.Security.KeyVault.Secrets >= 4.3.0-beta.2",
       "Microsoft.Azure.AppConfiguration.AspNetCore >= 4.5.1",
       "Microsoft.Azure.KeyVault >= 3.0.5",
@@ -8306,6 +8338,10 @@
           "Azure.Identity": {
             "target": "Package",
             "version": "[1.5.0, )"
+          },
+          "Azure.Security.KeyVault.Keys": {
+            "target": "Package",
+            "version": "[4.2.0, )"
           },
           "Azure.Security.KeyVault.Secrets": {
             "target": "Package",

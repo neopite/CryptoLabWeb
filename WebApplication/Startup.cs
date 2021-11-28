@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Azure.Core;
 using Azure.Identity;
+using Azure.Security.KeyVault.Keys;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,12 +51,11 @@ namespace WebApplication
 
             app.UseRouting();
 
-            var secret = _configuration["data"];
-
+            var client = new KeyClient(vaultUri: new Uri("https://band-vault.vault.azure.net/"), credential: new DefaultAzureCredential());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/",
-                    async context => { await context.Response.WriteAsync($"The secret value is: {secret}"); });
+                    async context => { await context.Response.WriteAsync($"The secret value is: {client.GetKey("key-name")}"); });
             });
 
             // app.UseEndpoints(endpoints =>
