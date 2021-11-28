@@ -31,10 +31,7 @@ namespace WebApplication
                 {
                     var settings = config.Build();
                     var keyVaultEndpoint = "https://band-vault.vault.azure.net/";
-                    var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                    var keyVaultClient = new KeyVaultClient(
-                        new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-                    config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                    config.AddAzureKeyVault(keyVaultEndpoint);
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }

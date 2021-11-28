@@ -49,27 +49,28 @@ namespace WebApplication
             app.UseRouting();
             
             
-            SecretClientOptions options = new SecretClientOptions()
-            {
-                Retry =
-                {
-                    Delay= TimeSpan.FromSeconds(2),
-                    MaxDelay = TimeSpan.FromSeconds(16),
-                    MaxRetries = 5,
-                    Mode = RetryMode.Exponential
-                }
-            };
-            var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
-                new DefaultAzureCredential(),options);
-            
-            KeyVaultSecret secret_login = client.GetSecret("db-login");
-            KeyVaultSecret secret_password = client.GetSecret("db-password");
+            // SecretClientOptions options = new SecretClientOptions()
+            // {
+            //     Retry =
+            //     {
+            //         Delay= TimeSpan.FromSeconds(2),
+            //         MaxDelay = TimeSpan.FromSeconds(16),
+            //         MaxRetries = 5,
+            //         Mode = RetryMode.Exponential
+            //     }
+            // };
+            // var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
+            //     new DefaultAzureCredential(),options);
+            //
+            // KeyVaultSecret secret_login = client.GetSecret("db-login");
+            // KeyVaultSecret secret_password = client.GetSecret("db-password");
+            var value = _configuration["db-login"]; 
             
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"The secret value is: {secret_login.Value}");
+                    await context.Response.WriteAsync($"The secret value is: {value}");
                 });
             });
 
@@ -78,6 +79,7 @@ namespace WebApplication
             //     endpoints.MapControllerRoute(
             //         name: "default",
             //         pattern: "{controller=Home}/{action=Index}/{id?}");
+            //     
             // });
         }
     }
