@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplication.Controllers.Validator;
@@ -21,10 +22,17 @@ namespace WebApplication
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+
             // SecretClientOptions options = new SecretClientOptions()
             // {
             //     Retry =
@@ -40,6 +48,11 @@ namespace WebApplication
             //
             // KeyVaultSecret secret_login = client.GetSecret("db-login");
             // KeyVaultSecret secret_password = client.GetSecret("db-password");
+            //
+            // var secret_login = Configuration.GetValue<string>("db-login");
+
+            var secret_login = _configuration["db-login"];
+            var secret_password = _configuration["db-password"];
             
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
