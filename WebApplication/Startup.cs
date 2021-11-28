@@ -32,10 +32,12 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var secret_login = _configuration["db-login"]; 
+            var secret_password = _configuration["db-password"]; 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("@Server=tcp:banda-server-db.database.windows.net,1433;" +
                 "Initial Catalog=band_db;Persist Security Info=False;" +
-                $"User ID=banda;Password=12345Sergey;MultipleActiveResultSets=False;" +
+                $"User ID={secret_login};Password={secret_password};MultipleActiveResultSets=False;" +
                 "Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
         }
 
@@ -48,39 +50,13 @@ namespace WebApplication
 
             app.UseRouting();
             
-            
-            // SecretClientOptions options = new SecretClientOptions()
-            // {
-            //     Retry =
-            //     {
-            //         Delay= TimeSpan.FromSeconds(2),
-            //         MaxDelay = TimeSpan.FromSeconds(16),
-            //         MaxRetries = 5,
-            //         Mode = RetryMode.Exponential
-            //     }
-            // };
-            // var client = new SecretClient(new Uri("https://band-vault.vault.azure.net/"), 
-            //     new DefaultAzureCredential(),options);
-            //
-            // KeyVaultSecret secret_login = client.GetSecret("db-login");
-            // KeyVaultSecret secret_password = client.GetSecret("db-password");
-            var value = _configuration["db-password"]; 
-            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync($"The secret value is: {value}");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                
             });
-
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllerRoute(
-            //         name: "default",
-            //         pattern: "{controller=Home}/{action=Index}/{id?}");
-            //     
-            // });
         }
     }
 }
