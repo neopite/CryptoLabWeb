@@ -53,7 +53,7 @@ namespace WebApplication.Controllers
                 hashedPassword))
             {
                 return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " +
-                      dataCypher.DecryptStringFromBytes_Aes(Encoding.UTF8.GetBytes(userFromDbByUsernameFromForm.City),
+                      dataCypher.DecryptStringFromBytes_Aes(Convert.FromBase64String(userFromDbByUsernameFromForm.City),
                            Encoding.ASCII.GetBytes(key),
                            IVforUsername.IV.Split('-').Select(b => Convert.ToByte(b, 16)).ToArray()
                            );
