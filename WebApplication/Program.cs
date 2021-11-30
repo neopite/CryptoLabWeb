@@ -37,14 +37,9 @@ namespace WebApplication
                     var keyVaultEndpoint = "https://band-vault.vault.azure.net/";
 
                     SecretClientOptions options = new SecretClientOptions();
-                    KeyClientOptions key_options = new KeyClientOptions();
                     SecretClient client =
                         new SecretClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential(), options);
-                    KeyClient keyClient = new KeyClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential(), key_options);
-                    var key = keyClient.GetKey("data").Value.ToString();
                     config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
-                    settings["data"] = key;
-                    config.AddConfiguration(settings);
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }

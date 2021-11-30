@@ -63,7 +63,7 @@ namespace WebApplication
             app.UseEndpoints(endpoints =>
             {
                 var login = _configuration["db-login"];
-                var key = _configuration["data"];
+                var key = _configuration["data-key"];
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync($"The secret value is: {key} {login}");
