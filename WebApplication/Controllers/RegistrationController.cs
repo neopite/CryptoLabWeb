@@ -35,7 +35,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult RegistrateUser(FormInput formInput)
         {
-            var key = configuration["data-key"];
+            var key = configuration["key-data"];
             var dataCypher = new DataCypherSolver();
             var byteKey = Encoding.ASCII.GetBytes(key);
             if (!ModelState.IsValid)
