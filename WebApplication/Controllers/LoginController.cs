@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
             var dataCypher = new DataCypherSolver();
             var IVforUsername =
                 applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm, x.IV));
-            var key = configuration["key-data"];
+            var key = configuration["data-k"];
             if (string.Equals(userFromDbByUsernameFromForm.Password,
                 hashedPassword))
             {
