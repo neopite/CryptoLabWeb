@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -36,7 +37,7 @@ namespace WebApplication.Model.AES
                     }
                 }
             }   
-            return Encoding.ASCII.GetString(encrypted);
+            return Convert.ToBase64String(encrypted);
         }
         
         public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
