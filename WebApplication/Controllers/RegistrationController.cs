@@ -11,6 +11,7 @@ using WebApplication.Model;
 using WebApplication.Model.AES;
 using WebApplication.Model.DB;
 using WebApplication.Model.Entety;
+using WebApplication.Model.Entity;
 using WebApplication.Model.Hashing;
 
 namespace WebApplication.Controllers
@@ -37,6 +38,7 @@ namespace WebApplication.Controllers
         {
             var key = configuration["key-data"];
             var dataCypher = new DataCypherSolver();
+            var IV = dataCypher.GetIV();
             var byteKey = Encoding.ASCII.GetBytes(key);
             if (!ModelState.IsValid)
             {
@@ -47,14 +49,16 @@ namespace WebApplication.Controllers
 
                 return Redirect("~/registration");
             }
+            
             var hashAlgorithm = new SHA256PasswordHashProvider();
             var saltedPassword = hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10);
-            var user = new User(dataCypher.Encrypt(formInput.Username,byteKey), saltedPassword.Hash,
-                dataCypher.Encrypt(formInput.MobilePhone,byteKey), dataCypher.Encrypt(formInput.City,byteKey));
+            var user = new User(formInput.Username, saltedPassword.Hash,
+                dataCypher.Encrypt(formInput.MobilePhone,byteKey,IV), dataCypher.Encrypt(formInput.City,byteKey,IV));
             context.User.Add(user);
             context.SaveChanges();
             var userId = context.User.FirstOrDefault(x => string.Equals(user.Username, x.Username)).Id;
             context.PasswordSalt.Add(new PasswordSalt(userId,saltedPassword.Salt));
+            context.IV.Add(new InitVector(userId, Encoding.UTF32.GetString(IV)));
             context.SaveChanges();
             return Redirect("~/login");
         }

@@ -6,20 +6,23 @@ namespace WebApplication.Model.AES
 {
     public interface IDataCypherSolver
     {
-        public string Encrypt(string plainText, byte[] Key);
-        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key);
+        public string Encrypt(string plainText, byte[] Key, byte[] IV);
+        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV);
+
+        public byte[] GetIV();
 
 
     }
 
     public class DataCypherSolver : IDataCypherSolver
     {
-        public string Encrypt(string plainText, byte[] Key)
+        public string Encrypt(string plainText, byte[] Key , byte[] IV)
         {
             byte[] encrypted;
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
+                aesAlg.IV = IV;
                 var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
                 using (var msEncrypt = new MemoryStream())
                 {
@@ -33,10 +36,10 @@ namespace WebApplication.Model.AES
                     }
                 }
             }   
-            return Encoding.ASCII.GetString(encrypted);;
+            return (Encoding.UTF32.GetString(encrypted));
         }
         
-        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key)
+        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             string plaintext;
 
@@ -57,6 +60,11 @@ namespace WebApplication.Model.AES
                 }
             }
             return plaintext;
+        }
+
+        public byte[] GetIV()
+        {
+            return Aes.Create().IV;
         }
     }
     
