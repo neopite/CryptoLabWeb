@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
             var key = configuration["data-k"];
             var dataCypher = new DataCypherSolver();
             var IV = dataCypher.GetIV();
-            var byteKey = Encoding.ASCII.GetBytes(key);
+            var byteKey = Encoding.UTF8.GetBytes(key);
             if (!ModelState.IsValid)
             {
                 if (!string.Equals(formInput.Password, formInput.PasswordConfirm))
@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
             context.SaveChanges();
             var userId = context.User.FirstOrDefault(x => string.Equals(user.Username, x.Username)).Id;
             context.PasswordSalt.Add(new PasswordSalt(userId,saltedPassword.Salt));
-            context.IV.Add(new InitVector(userId, Encoding.ASCII.GetString(IV)));
+            context.IV.Add(new InitVector(userId, Encoding.UTF8.GetString(IV)));
             context.SaveChanges();
             return Redirect("~/login");
         }
