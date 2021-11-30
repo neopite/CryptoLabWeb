@@ -52,23 +52,23 @@ namespace WebApplication
 
             app.UseRouting();
             
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllerRoute(
-            //         name: "default",
-            //         pattern: "{controller=Home}/{action=Index}/{id?}");
-            //     
-            // });
-            
             app.UseEndpoints(endpoints =>
             {
-                var login = _configuration["db-login"];
-                var key = _configuration["data-key"];
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync($"The secret value is: {key} {login}");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                
             });
+            
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     var login = _configuration["db-login"];
+            //     var key = _configuration["data-key"];
+            //     endpoints.MapGet("/", async context =>
+            //     {
+            //         await context.Response.WriteAsync($"The secret value is: {key} {login}");
+            //     });
+            // });
         }
     }
 }

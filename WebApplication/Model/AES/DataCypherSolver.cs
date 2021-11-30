@@ -1,25 +1,25 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace WebApplication.Model.AES
 {
     public interface IDataCypherSolver
     {
-        public byte[] EncryptPassword(string plainText, byte[] Key, byte[] IV);
-        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV);
+        public string Encrypt(string plainText, byte[] Key);
+        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key);
 
 
     }
 
     public class DataCypherSolver : IDataCypherSolver
     {
-        public byte[] EncryptPassword(string plainText, byte[] Key, byte[] IV)
+        public string Encrypt(string plainText, byte[] Key)
         {
             byte[] encrypted;
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
-                aesAlg.IV = IV;
                 var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
                 using (var msEncrypt = new MemoryStream())
                 {
@@ -33,17 +33,16 @@ namespace WebApplication.Model.AES
                     }
                 }
             }   
-            return encrypted;
+            return Encoding.ASCII.GetString(encrypted);;
         }
         
-        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key)
         {
             string plaintext;
 
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
-                aesAlg.IV = IV;
                 var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
                 using (var msDecrypt = new MemoryStream(cipherText))
