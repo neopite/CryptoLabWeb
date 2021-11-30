@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
             context.SaveChanges();
             var userId = context.User.FirstOrDefault(x => string.Equals(user.Username, x.Username)).Id;
             context.PasswordSalt.Add(new PasswordSalt(userId,saltedPassword.Salt));
-            context.IV.Add(new InitVector(userId, Encoding.UTF8.GetString(IV)));
+            context.IV.Add(new InitVector(userId, BitConverter.ToString(IV)));
             context.SaveChanges();
             return Redirect("~/login");
         }
