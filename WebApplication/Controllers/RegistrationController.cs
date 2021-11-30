@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
             var key = configuration["data-k"];
             var dataCypher = new DataCypherSolver();
             var IV = dataCypher.GetIV();
-            var byteKey = Encoding.UTF32.GetBytes(key);
+            var byteKey = Encoding.ASCII.GetBytes(key);
             if (!ModelState.IsValid)
             {
                 if (!string.Equals(formInput.Password, formInput.PasswordConfirm))
