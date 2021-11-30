@@ -16,8 +16,8 @@ namespace WebApplication.Controllers
         [Route("LoginCompleted")]
         public string CompleteRegistration()
         {
-            // return "Login Successful!";
-            return _keyClient.GetKey("data").Value.ToString();
+            return "Login Successful!";
+            // return _keyClient.GetKey("data").Value.ToString();
         }
     }
 }
