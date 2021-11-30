@@ -41,7 +41,9 @@ namespace WebApplication
                         new SecretClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential(), options);
                     // config.AddAzureKeyVault(keyVaultEndpoint);
                     KeyClient keyClient = new KeyClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential());
+                    var key = keyClient.GetKey("data");
                     config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
+                    config.Properties.Add("data", key);
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }
