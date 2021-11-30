@@ -54,8 +54,8 @@ namespace WebApplication.Controllers
             {
                 return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " +
                        dataCypher.DecryptStringFromBytes_Aes(Encoding.UTF8.GetBytes(userFromDbByUsernameFromForm.City),
-                           Encoding.UTF8.GetBytes(key),
-                           Encoding.UTF8.GetBytes(IVforUsername.IV)
+                           Encoding.ASCII.GetBytes(key),
+                           IVforUsername.IV.Split('-').Select(b => Convert.ToByte(b, 16)).ToArray()
                            );
             }
 
