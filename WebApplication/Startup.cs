@@ -59,22 +59,22 @@ namespace WebApplication
 
             app.UseRouting();
             
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllerRoute(
-            //         name: "default",
-            //         pattern: "{controller=Home}/{action=Index}/{id?}");
-            //     
-            // });
-            
             app.UseEndpoints(endpoints =>
             {
-                // var secret_key = _configuration["data"];
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync($"The secret value is: {_configuration.GetChildren().Select(a => a.Key).ToList().Count}");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                
             });
+            
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     var secret_key = _configuration["data"];
+            //     endpoints.MapGet("/", async context =>
+            //     {
+            //         await context.Response.WriteAsync($"The secret value is: {_configuration.GetChildren().Select(a => a.Key).ToList().Count}");
+            //     });
+            // });
         }
     }
 }
