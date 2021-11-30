@@ -53,9 +53,9 @@ namespace WebApplication.Controllers
                 hashedPassword))
             {
                 return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " +
-                       dataCypher.DecryptStringFromBytes_Aes(Encoding.UTF32.GetBytes(userFromDbByUsernameFromForm.City),
-                           Encoding.UTF32.GetBytes(key),
-                           Encoding.UTF32.GetBytes(IVforUsername.IV)
+                       dataCypher.DecryptStringFromBytes_Aes(Encoding.ASCII.GetBytes(userFromDbByUsernameFromForm.City),
+                           Encoding.ASCII.GetBytes(key),
+                           Encoding.ASCII.GetBytes(IVforUsername.IV)
                            );
             }
 
