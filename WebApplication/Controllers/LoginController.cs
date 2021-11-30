@@ -47,13 +47,13 @@ namespace WebApplication.Controllers
                 .HashPasswordWithExistingSalt(loginInputForm.Password, saltForUsername.Salt).Hash;
             var dataCypher = new DataCypherSolver();
             var IVforUsername =
-                applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm, x.IV));
+                applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm.Id, x.UserId));
             var key = configuration["data-k"];
             if (string.Equals(userFromDbByUsernameFromForm.Password,
                 hashedPassword))
             {
                 return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " +
-                       dataCypher.DecryptStringFromBytes_Aes(Encoding.UTF8.GetBytes(userFromDbByUsernameFromForm.City),
+                      dataCypher.DecryptStringFromBytes_Aes(Encoding.UTF8.GetBytes(userFromDbByUsernameFromForm.City),
                            Encoding.ASCII.GetBytes(key),
                            IVforUsername.IV.Split('-').Select(b => Convert.ToByte(b, 16)).ToArray()
                            );
