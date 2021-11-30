@@ -33,14 +33,7 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
-            services.AddAzureClients(config =>
-            {
-                config.UseCredential(new DefaultAzureCredential());
-                config.AddSecretClient(new Uri("https://band-vault.vault.azure.net/"));
-                config.AddKeyClient(new Uri("https://band-vault.vault.azure.net/"));
-            });
-            
+
             var secret_login = _configuration["db-login"]; 
             var secret_password = _configuration["db-password"];
             services.AddDbContext<ApplicationDbContext>(
@@ -69,10 +62,11 @@ namespace WebApplication
             
             app.UseEndpoints(endpoints =>
             {
-                var secret_key = _configuration["db-login"];
+                var login = _configuration["db-login"];
+                var key = _configuration["data"];
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"The secret value is: {secret_key}");
+                    await context.Response.WriteAsync($"The secret value is: {key} {login}");
                 });
             });
         }
