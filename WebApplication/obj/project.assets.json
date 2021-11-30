@@ -332,6 +332,24 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
+      "Microsoft.Extensions.Azure/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.19.0",
+          "Azure.Identity": "1.4.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Options": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Azure.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Azure.dll": {}
+        }
+      },
       "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -413,6 +431,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureKeyVault.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration.FileExtensions/3.1.21": {
@@ -2886,6 +2916,22 @@
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
+    "Microsoft.Extensions.Azure/1.1.1": {
+      "sha512": "3BruEhX5qrQ7wSX/2qw6rQJNBuXgXg3gHZyN/64eVpZRPjkgE4+OhrRIpWbNqw+XPg9pGzzjfwdri9v4eOdtsw==",
+      "type": "package",
+      "path": "microsoft.extensions.azure/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "lib/netstandard2.0/Microsoft.Extensions.Azure.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Azure.xml",
+        "microsoft.extensions.azure.1.1.1.nupkg.sha512",
+        "microsoft.extensions.azure.nuspec",
+        "pkgicon.png"
+      ]
+    },
     "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
       "sha512": "bu8As90/SBAouMZ6fJ+qRNo1X+KgHGrVueFhhYi+E5WqEhcnp2HoWRFnMzXQ6g4RdZbvPowFerSbKNH4Dtg5yg==",
       "type": "package",
@@ -2987,6 +3033,19 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureKeyVault.xml",
         "microsoft.extensions.configuration.azurekeyvault.3.1.21.nupkg.sha512",
         "microsoft.extensions.configuration.azurekeyvault.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+      "sha512": "Fls0O54Ielz1DiVYpcmiUpeizN1iKGGI5yAWAoShfmUvMcQ8jAGOK1a+DaflHA5hN9IOKvmSos0yewDYAIY0ZA==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.binder/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+        "microsoft.extensions.configuration.binder.2.1.0.nupkg.sha512",
+        "microsoft.extensions.configuration.binder.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration.FileExtensions/3.1.21": {
@@ -8289,6 +8348,7 @@
       "Microsoft.Azure.KeyVault >= 3.0.5",
       "Microsoft.EntityFrameworkCore >= 5.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.12",
+      "Microsoft.Extensions.Azure >= 1.1.1",
       "Microsoft.Extensions.Configuration.AzureKeyVault >= 3.1.21",
       "System.ComponentModel.Annotations >= 6.0.0-preview.4.21253.7",
       "System.Data.SqlClient >= 4.8.3"
@@ -8364,6 +8424,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.12, )"
+          },
+          "Microsoft.Extensions.Azure": {
+            "target": "Package",
+            "version": "[1.1.1, )"
           },
           "Microsoft.Extensions.Configuration.AzureKeyVault": {
             "target": "Package",

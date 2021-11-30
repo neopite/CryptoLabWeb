@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
+using Azure.Security.KeyVault.Keys;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,8 @@ using Microsoft.Extensions.Logging;
 
 // using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.Azure;
+
 // using Azure.Core;
 // using Microsoft.Azure.KeyVault;
 // using Microsoft.Azure.Services.AppAuthentication;
@@ -37,6 +40,7 @@ namespace WebApplication
                     SecretClient client =
                         new SecretClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential(), options);
                     // config.AddAzureKeyVault(keyVaultEndpoint);
+                    KeyClient keyClient = new KeyClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential());
                     config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });

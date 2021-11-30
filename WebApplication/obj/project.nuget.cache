@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nWu62A2IIUrzP2cc2g0wK9oBp3KJ2YFX4JqwbRURl5G21gGue96qqdYKtrcJfA3w7c/EJusCUpCt0F+e+Mka4A==",
+  "dgSpecHash": "vrGUYYyC4DUg3tvkz8fPW/+/pQy5ML9Zi2GcOSM6reQQTDCxDw8bKqiitANl4NsNZj1Hpu/tPsIzXZwS+ArWmA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sergey\\Desktop\\cryptowebapp\\CryptoLabWeb\\WebApplication\\WebApplication.csproj",
   "expectedPackageFiles": [
@@ -23,12 +23,14 @@
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.12\\microsoft.entityframeworkcore.analyzers.5.0.12.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.12\\microsoft.entityframeworkcore.relational.5.0.12.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.12\\microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512",
+    "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.azure\\1.1.1\\microsoft.extensions.azure.1.1.1.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.21\\microsoft.extensions.configuration.3.1.21.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration.azureappconfiguration\\4.5.1\\microsoft.extensions.configuration.azureappconfiguration.4.5.1.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration.azurekeyvault\\3.1.21\\microsoft.extensions.configuration.azurekeyvault.3.1.21.nupkg.sha512",
+    "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration.binder\\2.1.0\\microsoft.extensions.configuration.binder.2.1.0.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\3.1.21\\microsoft.extensions.configuration.fileextensions.3.1.21.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.2\\microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "C:\\Users\\Sergey\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +33,14 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
+            services.AddAzureClients(config =>
+            {
+                config.UseCredential(new DefaultAzureCredential());
+                config.AddSecretClient(new Uri("https://band-vault.vault.azure.net/"));
+                config.AddKeyClient(new Uri("https://band-vault.vault.azure.net/"));
+            });
+            
             var secret_login = _configuration["db-login"]; 
             var secret_password = _configuration["db-password"];
             services.AddDbContext<ApplicationDbContext>(
