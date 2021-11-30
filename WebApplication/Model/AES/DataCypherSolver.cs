@@ -36,7 +36,7 @@ namespace WebApplication.Model.AES
                     }
                 }
             }   
-            return (Encoding.UTF32.GetString(encrypted));
+            return (Encoding.UTF8.GetString(encrypted));
         }
         
         public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
