@@ -47,6 +47,7 @@ namespace WebApplication.Model.AES
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
+                aesAlg.IV = IV;
                 var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
                 using (var msDecrypt = new MemoryStream(cipherText))
