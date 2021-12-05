@@ -33,6 +33,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public string Login(LoginInputForm loginInputForm)
         {
+            var key = configuration["data-k"];
             var userFromDbByUsernameFromForm =
                 applicationDbContext.User.FirstOrDefault(user => string.Equals(loginInputForm.Username, user.Username));
             if (userFromDbByUsernameFromForm == null)
@@ -48,7 +49,6 @@ namespace WebApplication.Controllers
             var dataCypher = new DataCypherSolver();
             var IVforUsername =
                 applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm.Id, x.UserId));
-            var key = configuration["data-k"];
             if (string.Equals(userFromDbByUsernameFromForm.Password,
                 hashedPassword))
             {
