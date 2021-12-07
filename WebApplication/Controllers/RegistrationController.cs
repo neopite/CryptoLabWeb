@@ -37,9 +37,6 @@ namespace WebApplication.Controllers
         public IActionResult RegistrateUser(FormInput formInput)
         {
             var key = configuration["data-k"];
-            var dataCypher = new DataCypherSolver();
-            var IV = dataCypher.GetIV();
-            var byteKey = Encoding.ASCII.GetBytes(key);
             if (!ModelState.IsValid)
             {
                 if (!string.Equals(formInput.Password, formInput.PasswordConfirm))
@@ -49,16 +46,13 @@ namespace WebApplication.Controllers
 
                 return Redirect("~/registration");
             }
-            
-            var hashAlgorithm = new SHA256PasswordHashProvider();
-            var saltedPassword = hashAlgorithm.HashPasswordWithSalt(formInput.Password, 10);
-            var user = new User(formInput.Username, saltedPassword.Hash,
-                dataCypher.Encrypt(formInput.MobilePhone,byteKey,IV), dataCypher.Encrypt(formInput.City,byteKey,IV));
-            context.User.Add(user);
+            IUserDbEncryptionHandler handler = new UserDbEncryptionHandler();
+            var encryptedRow = handler.Encrypt(formInput, key);
+            context.User.Add(encryptedRow.user);
             context.SaveChanges();
-            var userId = context.User.FirstOrDefault(x => string.Equals(user.Username, x.Username)).Id;
-            context.PasswordSalt.Add(new PasswordSalt(userId,saltedPassword.Salt));
-            context.IV.Add(new InitVector(userId, BitConverter.ToString(IV)));
+            var userId = context.User.FirstOrDefault(x => string.Equals(encryptedRow.user.Username, x.Username)).Id;
+            context.PasswordSalt.Add(new PasswordSalt(userId,encryptedRow.password.Salt));
+            context.IV.Add(new InitVector(userId, BitConverter.ToString(encryptedRow.IV)));
             context.SaveChanges();
             return Redirect("~/login");
         }
