@@ -25,7 +25,7 @@ namespace WebApplication.Model.Hashing
             argon2.Iterations = 4;
             argon2.MemorySize = 1024 * 4;
 
-            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Encoding.ASCII.GetString(salt));
+            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Convert.ToBase64String(salt));
         }
 
         public SaltedPassword HashPasswordWithExistingSalt(string password, string salt)
