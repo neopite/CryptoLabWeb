@@ -17,8 +17,8 @@ namespace WebApplication.Model.AES
             var dataCypher = new DataCypherSolver();
             var IV = dataCypher.GetIV();
             var byteKey =  Encoding.ASCII.GetBytes(key);
-            var hashAlgorithm = new SHA256PasswordHashProvider();
-            var saltedPassword = hashAlgorithm.HashPasswordWithSalt(userCredentials.Password, 10);
+            var hashAlgorithm = new Argon2PasswordHashProvider();
+            var saltedPassword = hashAlgorithm.HashPasswordWithSalt(userCredentials.Password, 16);
             var userSecureRecord = new User(userCredentials.Username, saltedPassword.Hash,
                 dataCypher.Encrypt(userCredentials.MobilePhone,byteKey,IV), dataCypher.Encrypt(userCredentials.City,byteKey,IV));
             return (userSecureRecord,saltedPassword,IV);

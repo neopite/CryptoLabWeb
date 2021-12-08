@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Konscious.Security.Cryptography;
 using WebApplication.Model.Keys;
 
 namespace WebApplication.Model.Hashing
@@ -9,32 +10,42 @@ namespace WebApplication.Model.Hashing
     public interface IPasswordHashProvider
     {
         public SaltedPassword HashPasswordWithSalt(string password, int saltSize);
-        public SaltedPassword HashPasswordWithExistingSalt(string password, string salt);
+        public SaltedPassword HashPasswordWithExistingSalt(string password, byte[] salt);
     }
-
-    public class SHA256PasswordHashProvider : IPasswordHashProvider
+    
+    public class Argon2PasswordHashProvider : IPasswordHashProvider
     {
         public SaltedPassword HashPasswordWithSalt(string password, int saltSize)
         {
-            var keyProvider = new KeyProvider();
-            var salt = keyProvider.GenerateRandomCryptographicBytes(saltSize);
-            var passwordUtf8 = Encoding.UTF8.GetBytes(password);
-            List<byte> passwordWithSaltBytes = new List<byte>();
-            passwordWithSaltBytes.AddRange(passwordUtf8);
-            passwordWithSaltBytes.AddRange(salt);
-            byte[] digestBytes = SHA256.Create().ComputeHash(passwordWithSaltBytes.ToArray());
-            return new SaltedPassword(Convert.ToBase64String(digestBytes), Convert.ToBase64String(salt));
+            var salt = CreateSalt(saltSize);
+            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+
+            argon2.Salt = salt;
+            argon2.DegreeOfParallelism = 8;
+            argon2.Iterations = 4;
+            argon2.MemorySize = 1024 * 4;
+
+            return new SaltedPassword(Encoding.UTF8.GetString(argon2.GetBytes(16)), Encoding.UTF8.GetString(salt));
         }
 
-        public SaltedPassword HashPasswordWithExistingSalt(string password, string salt)
+        public SaltedPassword HashPasswordWithExistingSalt(string password, byte[] salt)
         {
-            var passwordUtf8 = Encoding.UTF8.GetBytes(password);
-            var saltBytes = Convert.FromBase64String(salt);
-            List<byte> passwordWithSaltBytes = new List<byte>();
-            passwordWithSaltBytes.AddRange(passwordUtf8);
-            passwordWithSaltBytes.AddRange(saltBytes);
-            byte[] digestBytes = SHA256.Create().ComputeHash(passwordWithSaltBytes.ToArray());
-            return new SaltedPassword(Convert.ToBase64String(digestBytes), salt);
+            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+
+            argon2.Salt = salt;
+            argon2.DegreeOfParallelism = 8;
+            argon2.Iterations = 4;
+            argon2.MemorySize = 1024 * 4; 
+
+            return new SaltedPassword(Encoding.UTF8.GetString(argon2.GetBytes(16)), Encoding.UTF8.GetString(salt));
+        }
+
+        private byte[] CreateSalt(int saltSize)
+        {
+            var buffer = new byte[saltSize];
+            var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(buffer);
+            return buffer;
         }
     }
 }
