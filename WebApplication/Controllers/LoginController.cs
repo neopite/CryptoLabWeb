@@ -46,17 +46,12 @@ namespace WebApplication.Controllers
             var hashingAlgorithm = new Argon2PasswordHashProvider();
             var hashedPassword = hashingAlgorithm
                 .HashPasswordWithExistingSalt(loginInputForm.Password, saltForUsername.Salt).Hash;
-            var dataCypher = new DataCypherSolver();
-            var IVforUsername =
-                applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm.Id, x.UserId));
+            var decryptedUser = new UserDbDecryptionHandler().DecryptUserInfoFromDb(userFromDbByUsernameFromForm,key);
             if (string.Equals(userFromDbByUsernameFromForm.Password,
                 hashedPassword))
             {
-                return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " +
-                      dataCypher.DecryptStringFromBytes_Aes(Convert.FromBase64String(userFromDbByUsernameFromForm.City),
-                           Encoding.ASCII.GetBytes(key),
-                           IVforUsername.IV.Split('-').Select(b => Convert.ToByte(b, 16)).ToArray()
-                           );
+                return "Hello , " + userFromDbByUsernameFromForm.Username + " , city : " + decryptedUser.City;
+
             }
 
             return "SMTH WRONG";
