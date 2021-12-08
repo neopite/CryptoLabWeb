@@ -18,26 +18,26 @@ namespace WebApplication.Model.Hashing
         public SaltedPassword HashPasswordWithSalt(string password, int saltSize)
         {
             var salt = CreateSalt(saltSize);
-            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+            var argon2 = new Argon2id(Encoding.ASCII.GetBytes(password));
 
             argon2.Salt = salt;
             argon2.DegreeOfParallelism = 8;
             argon2.Iterations = 4;
             argon2.MemorySize = 1024 * 4;
 
-            return new SaltedPassword(Encoding.UTF8.GetString(argon2.GetBytes(16)), Encoding.UTF8.GetString(salt));
+            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Encoding.ASCII.GetString(salt));
         }
 
         public SaltedPassword HashPasswordWithExistingSalt(string password, byte[] salt)
         {
-            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+            var argon2 = new Argon2id(Encoding.ASCII.GetBytes(password));
 
             argon2.Salt = salt;
             argon2.DegreeOfParallelism = 8;
             argon2.Iterations = 4;
             argon2.MemorySize = 1024 * 4; 
 
-            return new SaltedPassword(Encoding.UTF8.GetString(argon2.GetBytes(16)), Encoding.UTF8.GetString(salt));
+            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Encoding.ASCII.GetString(salt));
         }
 
         private byte[] CreateSalt(int saltSize)
