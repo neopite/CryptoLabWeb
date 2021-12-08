@@ -45,7 +45,7 @@ namespace WebApplication.Controllers
                 applicationDbContext.PasswordSalt.FirstOrDefault(x => x.UserId == userFromDbByUsernameFromForm.Id);
             var hashingAlgorithm = new Argon2PasswordHashProvider();
             var hashedPassword = hashingAlgorithm
-                .HashPasswordWithExistingSalt(loginInputForm.Password, Encoding.UTF8.GetBytes(saltForUsername.Salt)).Hash;
+                .HashPasswordWithExistingSalt(loginInputForm.Password, saltForUsername.Salt).Hash;
             var dataCypher = new DataCypherSolver();
             var IVforUsername =
                 applicationDbContext.IV.FirstOrDefault(x => string.Equals(userFromDbByUsernameFromForm.Id, x.UserId));

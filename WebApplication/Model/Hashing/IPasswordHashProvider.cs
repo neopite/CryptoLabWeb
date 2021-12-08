@@ -10,7 +10,7 @@ namespace WebApplication.Model.Hashing
     public interface IPasswordHashProvider
     {
         public SaltedPassword HashPasswordWithSalt(string password, int saltSize);
-        public SaltedPassword HashPasswordWithExistingSalt(string password, byte[] salt);
+        public SaltedPassword HashPasswordWithExistingSalt(string password, string salt);
     }
     
     public class Argon2PasswordHashProvider : IPasswordHashProvider
@@ -28,16 +28,17 @@ namespace WebApplication.Model.Hashing
             return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Encoding.ASCII.GetString(salt));
         }
 
-        public SaltedPassword HashPasswordWithExistingSalt(string password, byte[] salt)
+        public SaltedPassword HashPasswordWithExistingSalt(string password, string salt)
         {
+            var stringsalt = Convert.FromBase64String(salt);
             var argon2 = new Argon2id(Encoding.ASCII.GetBytes(password));
 
-            argon2.Salt = salt;
+            argon2.Salt = stringsalt;
             argon2.DegreeOfParallelism = 8;
             argon2.Iterations = 4;
             argon2.MemorySize = 1024 * 4; 
 
-            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Encoding.ASCII.GetString(salt));
+            return new SaltedPassword(Encoding.ASCII.GetString(argon2.GetBytes(16)), Convert.ToBase64String(stringsalt));
         }
 
         private byte[] CreateSalt(int saltSize)
