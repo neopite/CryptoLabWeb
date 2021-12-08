@@ -41,11 +41,10 @@ namespace WebApplication.Model.Hashing
         }
 
         private byte[] CreateSalt(int saltSize)
-        {
-            var buffer = new byte[saltSize];
-            var rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(buffer);
-            return buffer;
+        { 
+            var keyProvider = new KeyProvider();
+            var salt = keyProvider.GenerateRandomCryptographicBytes(saltSize);
+            return salt;
         }
     }
 }
