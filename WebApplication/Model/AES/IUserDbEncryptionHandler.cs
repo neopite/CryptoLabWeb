@@ -23,8 +23,8 @@ namespace WebApplication.Model.AES
             var saltedPassword = hashAlgorithm.HashPasswordWithSalt(userCredentials.Password, 16);
             var userSecureRecord = new User(userCredentials.Username, saltedPassword.Hash,
                 dataCypher.Encrypt(userCredentials.MobilePhone, byteKey, IvForMobile) +
-                Encoding.UTF8.GetString(IvForMobile),
-                dataCypher.Encrypt(userCredentials.City, byteKey, IVForCity) + Encoding.UTF8.GetString(IvForMobile));
+                Encoding.Default.GetString(IvForMobile),
+                dataCypher.Encrypt(userCredentials.City, byteKey, IVForCity) + Encoding.Default.GetString(IVForCity));
             return (userSecureRecord, saltedPassword, IVForCity);
         }
     }

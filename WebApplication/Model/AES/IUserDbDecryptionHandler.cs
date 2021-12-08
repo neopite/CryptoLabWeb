@@ -13,8 +13,8 @@ namespace WebApplication.Model.AES
     {
         public User DecryptUserInfoFromDb(User user, string key)
         {
-            var cityIV = Encoding.UTF8.GetBytes(user.City).TakeLast(16).ToArray();
-            var mobileIv = Encoding.UTF8.GetBytes(user.MobilePhone).TakeLast(16).ToArray();
+            var cityIV = Encoding.Default.GetBytes(user.City).TakeLast(16).ToArray();
+            var mobileIv = Encoding.Default.GetBytes(user.MobilePhone).TakeLast(16).ToArray();
             var dataCypher = new DataCypherSolver();
             var city =   dataCypher.DecryptStringFromBytes_Aes(Convert.FromBase64String(user.City),
                 Encoding.ASCII.GetBytes(key),
