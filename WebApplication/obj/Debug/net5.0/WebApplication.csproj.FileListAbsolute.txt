@@ -208,3 +208,16 @@ C:\Users\Sergey\Desktop\cryptowebapp\CryptoLabWeb\WebApplication\obj\Debug\net5.
 C:\Users\Sergey\Desktop\cryptowebapp\CryptoLabWeb\WebApplication\obj\Debug\net5.0\ref\WebApplication.dll
 C:\Users\Sergey\Desktop\cryptowebapp\CryptoLabWeb\WebApplication\obj\Debug\net5.0\WebApplication.pdb
 C:\Users\Sergey\Desktop\cryptowebapp\CryptoLabWeb\WebApplication\obj\Debug\net5.0\WebApplication.genruntimeconfig.cache
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Azure.Security.KeyVault.Keys.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Konscious.Security.Cryptography.Blake2.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Azure.KeyVault.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Azure.KeyVault.WebKey.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Extensions.Azure.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Extensions.Configuration.AzureKeyVault.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Rest.ClientRuntime.dll
+C:\Users\Stami\RiderProjects\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.Rest.ClientRuntime.Azure.dll
