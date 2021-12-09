@@ -38,16 +38,22 @@ We keep in database initialization vector for AES algorithm per each user in hex
 We've deployed our web app in Azure.
 ![alt text](../WebApplication/Properties/ReportImages/app-service.png)
 
-We've set the minimum TLS version as 1.2
-![alt text](../WebApplication/Properties/ReportImages/tls-version.png)
+We've decided to generate self-signed certificate with the tool OpenSSL.
+For this task we've generated the private key with the pass phrase.
+![alt text](../WebApplication/Properties/ReportImages/private_key.png)
 
-We've created the certificate in Azure Key Vault and imported it to our app
-![alt text](../WebApplication/Properties/ReportImages/certificate.png)
+After that we've created the CSR (Certificate Signing Request) with the help of private key.
+![alt text](../WebApplication/Properties/ReportImages/csr.png)
 
-We've added our custom domain to create TLS binding to our app. 
-For it we've created custom domain with the following DNS records
-![alt text](../WebApplication/Properties/ReportImages/dns-records.png)
+After that we've created the certificate with the private key and csr. 
+To successfully upload self-signed certificate to Azure we should add the serverAuth in the config file.
 
-And after this we've got our new domain name with our custom created TLS certificate.
+![alt text](../WebApplication/Properties/ReportImages/certificate_generate.png)
 
-![alt text](../WebApplication/Properties/ReportImages/demo.png)
+After successful uploading our self-signed certificate to Azure we bind it to our custom domain
+
+![alt text](../WebApplication/Properties/ReportImages/tks_binding.png)
+
+And as a result we have connected certificate to our web app
+
+![alt text](../WebApplication/Properties/ReportImages/demonstration.png)
