@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Buffers.Text;
+using System.Linq;
 using System.Text;
 using WebApplication.Model.Entety;
 using WebApplication.Model.Hashing;
@@ -22,9 +24,8 @@ namespace WebApplication.Model.AES
             var hashAlgorithm = new Argon2PasswordHashProvider();
             var saltedPassword = hashAlgorithm.HashPasswordWithSalt(userCredentials.Password, 16);
             var userSecureRecord = new User(userCredentials.Username, saltedPassword.Hash,
-                dataCypher.Encrypt(userCredentials.MobilePhone, byteKey, IvForMobile) +
-                IvForMobile.ByteArrayToString(),
-                dataCypher.Encrypt(userCredentials.City, byteKey, IVForCity) +  IvForMobile.ByteArrayToString());
+                Convert.ToBase64String(dataCypher.Encrypt(userCredentials.MobilePhone, byteKey, IvForMobile).Concat(IvForMobile).ToArray()), 
+                Convert.ToBase64String(dataCypher.Encrypt(userCredentials.City, byteKey, IVForCity).Concat(IVForCity).ToArray()));
             return (userSecureRecord, saltedPassword, IVForCity);
         }
     }

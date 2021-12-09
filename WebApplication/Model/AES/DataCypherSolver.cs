@@ -7,7 +7,7 @@ namespace WebApplication.Model.AES
 {
     public interface IDataCypherSolver
     {
-        public string Encrypt(string plainText, byte[] Key, byte[] IV);
+        public byte[] Encrypt(string plainText, byte[] Key, byte[] IV);
         public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV);
 
         public byte[] GetIV();
@@ -17,7 +17,7 @@ namespace WebApplication.Model.AES
 
     public class DataCypherSolver : IDataCypherSolver
     {
-        public string Encrypt(string plainText, byte[] Key , byte[] IV)
+        public byte[] Encrypt(string plainText, byte[] Key , byte[] IV)
         {
             byte[] encrypted;
             using (Aes aesAlg = Aes.Create())
@@ -36,8 +36,9 @@ namespace WebApplication.Model.AES
                         encrypted = msEncrypt.ToArray();
                     }
                 }
-            }   
-            return Convert.ToBase64String(encrypted);
+            }
+
+            return encrypted;
         }
         
         public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)

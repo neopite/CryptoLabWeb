@@ -13,22 +13,23 @@ namespace WebApplication.Model.AES
     {
         public User DecryptUserInfoFromDb(User user, string key)
         {
-            var cityIV = Encoding.Default.GetBytes(user.City).TakeLast(16).ToArray();
-            var mobileIv = Encoding.Default.GetBytes(user.MobilePhone).TakeLast(16).ToArray();
+            var cityIV = Convert.FromBase64String(user.City).TakeLast(16).ToArray();
+            var mobileIv = Convert.FromBase64String(user.MobilePhone).TakeLast(16).ToArray();
             var dataCypher = new DataCypherSolver();
             Console.WriteLine(user.City);
-            var city =   dataCypher.DecryptStringFromBytes_Aes(Convert.FromBase64String(user.City.Substring(0,user.City.Length-16)),
-                Encoding.ASCII.GetBytes(key),
-                cityIV
-            );
-            
-            var mobile = dataCypher.DecryptStringFromBytes_Aes(Convert.FromBase64String(user.MobilePhone.Substring(0,user.MobilePhone.Length-16)),
+            var city = dataCypher.DecryptStringFromBytes_Aes(
+                Convert.FromBase64String(user.City),
+            Encoding.ASCII.GetBytes(key),
+            cityIV
+                );
+            city = city.Substring(0, city.Length - 16);
+            var mobile = dataCypher.DecryptStringFromBytes_Aes(
+                Convert.FromBase64String(user.MobilePhone),
                 Encoding.ASCII.GetBytes(key),
                 mobileIv
             );
-            return new User(user.Username,user.Password,mobile,city);
+            mobile = mobile.Substring(0, mobile.Length - 16);
+            return new User(user.Username, user.Password, mobile, city);
         }
-        
     }
-    
 }
