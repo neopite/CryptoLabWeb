@@ -19,5 +19,6 @@ namespace WebApplication.Model
         public string MobilePhone { get; set; }
 
         public string City { get; set; }
+        
     }
 }
