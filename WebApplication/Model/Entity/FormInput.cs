@@ -19,14 +19,6 @@ namespace WebApplication.Model
         public string MobilePhone { get; set; }
 
         public string City { get; set; }
-
-        public FormInput(string username, string password, string passwordConfirm, string mobilePhone, string city)
-        {
-            Username = username;
-            Password = password;
-            PasswordConfirm = passwordConfirm;
-            MobilePhone = mobilePhone;
-            City = city;
-        }
+        
     }
 }
