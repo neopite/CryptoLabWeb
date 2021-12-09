@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 // using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.Extensions.Azure;
+using WebApplication.Model;
+using WebApplication.Model.AES;
 
 // using Azure.Core;
 // using Microsoft.Azure.KeyVault;
@@ -26,7 +28,14 @@ namespace WebApplication
     {
         public static void Main(string[] args)
         { 
-            CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().Run();
+            var key = "*F-JaNdRgUkXp2s5";
+            var inputForm = new FormInput("1","123123123123","123123123123","2","4");
+            var userDbEcnryptor = new UserDbEncryptionHandler();
+            var userDbDecryptorHandler = new UserDbDecryptionHandler();
+            var encrypted = userDbEcnryptor.Encrypt(inputForm, key);
+            var decrypted = userDbDecryptorHandler.DecryptUserInfoFromDb(encrypted.user, key);
+            Console.WriteLine(decrypted.City);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

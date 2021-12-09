@@ -16,19 +16,19 @@ namespace WebApplication.Model.AES
             var cityIV = Convert.FromBase64String(user.City).TakeLast(16).ToArray();
             var mobileIv = Convert.FromBase64String(user.MobilePhone).TakeLast(16).ToArray();
             var dataCypher = new DataCypherSolver();
-            Console.WriteLine(user.City);
+            var fromBaseCity = Convert.FromBase64String(user.City);
             var city = dataCypher.DecryptStringFromBytes_Aes(
-                Convert.FromBase64String(user.City),
+                fromBaseCity.Take(fromBaseCity.Length - 16).ToArray(),
             Encoding.ASCII.GetBytes(key),
             cityIV
                 );
-            city = city.Substring(0, city.Length - 16);
+            Console.WriteLine(city);
+            var fromBaseMobile = Convert.FromBase64String(user.MobilePhone) ;
             var mobile = dataCypher.DecryptStringFromBytes_Aes(
-                Convert.FromBase64String(user.MobilePhone),
+                fromBaseMobile.Take(fromBaseMobile.Length-16).ToArray(),
                 Encoding.ASCII.GetBytes(key),
                 mobileIv
             );
-            mobile = mobile.Substring(0, mobile.Length - 16);
             return new User(user.Username, user.Password, mobile, city);
         }
     }
