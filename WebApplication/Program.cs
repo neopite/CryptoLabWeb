@@ -28,14 +28,15 @@ namespace WebApplication
     {
         public static void Main(string[] args)
         { 
-            //CreateHostBuilder(args).Build().Run();
-            var key = "*F-JaNdRgUkXp2s5";
-            var inputForm = new FormInput("1","123123123123","123123123123","2","4");
-            var userDbEcnryptor = new UserDbEncryptionHandler();
-            var userDbDecryptorHandler = new UserDbDecryptionHandler();
-            var encrypted = userDbEcnryptor.Encrypt(inputForm, key);
-            var decrypted = userDbDecryptorHandler.DecryptUserInfoFromDb(encrypted.user, key);
-            Console.WriteLine(decrypted.City);
+             CreateHostBuilder(args).Build().Run();
+
+            // var key = "*F-JaNdRgUkXp2s5";
+            // var encr = new UserDbEncryptionHandler();
+            // var decr = new UserDbDecryptionHandler();
+            // var usr = new FormInput("Serii", "123", "123", "Konotop", "Mobile");
+            // var encrypt = encr.Encrypt(usr, key);
+            // var decrypt = decr.DecryptUserInfoFromDb(encrypt.user, key);
+            // Console.WriteLine(decrypt.City);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

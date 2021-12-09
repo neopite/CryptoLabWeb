@@ -11,31 +11,24 @@ namespace WebApplication.Model.AES
 {
     public interface IUserDbEncryptionHandler
     {
-        public (User user, SaltedPassword password, byte[] IV) Encrypt(FormInput userCredentials, string key);
+        public (User user, SaltedPassword password) Encrypt(FormInput userCredentials, string key);
     }
 
     public class UserDbEncryptionHandler : IUserDbEncryptionHandler
     {
-        public (User user, SaltedPassword password, byte[] IV) Encrypt(FormInput userCredentials, string key)
+        public (User user, SaltedPassword password) Encrypt(FormInput userCredentials, string key)
         {
             var dataCypher = new DataCypherSolver();
-            var IVForCity = dataCypher.GetIV();
-            var IvForMobile = dataCypher.GetIV();
-            Console.WriteLine(IvForMobile.Length);
             var byteKey = Encoding.ASCII.GetBytes(key);
             var hashAlgorithm = new Argon2PasswordHashProvider();
             var saltedPassword = hashAlgorithm.HashPasswordWithSalt(userCredentials.Password, 16);
-            var totalCity = new List<byte>();
-            totalCity.AddRange(dataCypher.Encrypt(userCredentials.City, byteKey, IVForCity));
-            totalCity.AddRange(IVForCity.ToList());
-            var totalMobile = new List<byte>();
-            totalMobile.AddRange(dataCypher.Encrypt(userCredentials.MobilePhone, byteKey, IvForMobile));
-            totalMobile.AddRange(IvForMobile.ToList());
+            var encryptedCity = dataCypher.Encrypt(userCredentials.City, key);
+            var encryptedMobile = dataCypher.Encrypt(userCredentials.MobilePhone, key);
+            var userSecureRecord =
+                new User(userCredentials.Username, saltedPassword.Hash, Convert.ToBase64String(encryptedMobile),
+                    Convert.ToBase64String(encryptedCity));
 
-            var userSecureRecord = new User(userCredentials.Username, saltedPassword.Hash,
-                Convert.ToBase64String(totalMobile.ToArray()),
-                Convert.ToBase64String(totalCity.ToArray()));
-            return (userSecureRecord, saltedPassword, IVForCity);
+            return (userSecureRecord, saltedPassword);
         }
     }
 }
