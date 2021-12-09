@@ -1,13 +1,13 @@
 ﻿## Lab 5 - Password storage , Hashing
 
 For this lab we used c# + asp.core for client-server webapp . Also we added Azure Cloud Provider for deploying wep-app 
-, key-vault and db storage , in our case it was Azure DB(SQL Server). For hashing algorithm we used SHA-256 with salt.Also we store salt in a separate table.
+, key-vault and db storage , in our case it was Azure DB(SQL Server). For hashing algorithm we used Argon2 with salt.Also we store salt in a separate table.
 For the security purpose we added password requirements for user like minimum 10 letters count.
 Our database has next structure 
 
-![alt text](../WebApplication/Properties/ReportImages/db-structure.jpg)
+![alt text](../WebApplication/Properties/ReportImages/ex.jpg)
 
-As you can see we have three tables : user , passwordSalt , IV(not interested in out case)
+As you can see we have two tables : user , passwordSalt 
 
 ![alt text](../WebApplication/Properties/ReportImages/db-view.jpg)
 
@@ -23,15 +23,18 @@ Next step we will login and check is all correct
 
 ## Lab 6 - Sensitive information storage
 
-We've added the secret key with the help of which we encoded the sensitive user data with the AES algorithm. This key is contained not in database but in Azure Key Vault as a secret (data-k). 
+We've added the secret key with the help of which we encoded the sensitive user data with the AES-GCM algorithm. This key is contained not in database but in Azure Key Vault as a secret (data-k).
+AES-GCM is defined for block ciphers with a block size of 128 bits
+For the ecnryption/decryption you need generate tag and IV(nonce)
 
 
 ![alt text](../WebApplication/Properties/ReportImages/secret-key.png)
 
-With the help of this key and the fact that AES is symmetric algorithm, we've implemented encrypting the sensitive 
+With the help of this key and the fact that AES-GCM is symmetric algorithm, we've implemented encrypting the sensitive 
 personal data in the database and decrypting this info while displaying it on the profile's user page.
 
-We keep in database initialization vector for AES algorithm per each user in hex format.
+As a result you can see the result of the AES-GCM encryption 
+![alt text](../WebApplication/Properties/ReportImages/ex.jpg)
 
 ## Lab 7 - TLS configuration
 
