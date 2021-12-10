@@ -3,18 +3,16 @@
 For this lab we used c# + asp.core for client-server webapp . Also we added Azure Cloud Provider for deploying wep-app 
 , key-vault and db storage , in our case it was Azure DB(SQL Server). For hashing algorithm we used Argon2 with salt.Also we store salt in a separate table.
 For the security purpose we added password requirements for user like minimum 10 letters count.
-Our database has next structure 
+As you can see we have two tables : user , passwordSalt
+Our database has next structure
 
-![alt text](../WebApplication/Properties/ReportImages/ex.jpg)
-
-As you can see we have two tables : user , passwordSalt 
-
-![alt text](../WebApplication/Properties/ReportImages/db-view.jpg)
+![alt text](../WebApplication/Properties/ReportImages/db-v.jpg)
 
 For the lab purpose , we have created registration and login form , now  will registrate one user. 
 As a result we got a hashed password(with salt in separate table) + sensitive data encryption(it`s for the next lab)
 
-![alt text](../WebApplication/Properties/ReportImages/db-screenshot.jpg)
+![alt text](../WebApplication/Properties/ReportImages/ex.jpg)
+
 
 Next step we will login and check is all correct
 
